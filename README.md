@@ -35,7 +35,7 @@ The sketch as of now focuses mainly on association training (Still trains other 
     ```bash
     git clone <https://github.com/ATOMNFT/Pwny-Trainer>
     ```
-   **Or you can download the sketch above.**
+ --  **Or you can download the sketch above.**
 
 2. **Upload the sketch** to your ESP32 device using the Arduino IDE.
 
