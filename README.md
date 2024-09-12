@@ -1,5 +1,7 @@
 # Pwnagotchi Trainer with ESP32
 
+## 📷 Images coming soon! 📷
+
 This Arduino sketch transforms an ESP32 into a Pwnagotchi trainer, helping Pwnagotchis improve their ability to detect, deauthenticate, and capture handshakes from Wi-Fi networks in a dynamic, ever-changing environment. 
 <br>
 The sketch as of now focuses mainly on association training (Still trains other areas, but minimally) but I'm working on deauth training and a few other features.
