@@ -20,6 +20,8 @@ The sketch as of now focuses mainly on association training (Still trains other 
   
 - **Promiscuous Mode (Sniffer) & Beacon Frame Interaction**: The ESP32 operates in promiscuous mode, capturing Wi-Fi management frames, particularly beacon frames sent by Pwnagotchis, extracts the Pwnagotchi's name from the JSON payload, and displays it. This helps identify specific Pwnagotchis in training.
 
+- **A corresponding plugin**: The Training_Block plugin aids in allowing wpa-sec plugin to skip uploading pcap files containing "PT_" in the filename. This eliminates useless uploads and work for wpa-sec. More info coming soon on this plugin...
+
 
 ## What the Pwnagotchi is Doing
 
@@ -35,6 +37,13 @@ The sketch as of now focuses mainly on association training (Still trains other 
 
 - **Real-World Simulation**: By generating random SSIDs, passwords, and beacon frames, the trainer creates a dynamic Wi-Fi environment similar to what Pwnagotchis would encounter in real-world scenarios.
 
+## Device Compatibility
+
+Successfully tested on these devices:
+- [CYD variant 1](https://amazon.com/dp/B0BVFXR313)
+- [CYD variant 2](https://amazon.com/dp/B0CLR7MQ91)
+- [Generic TTGO T-Display](https://a.co/d/2NJfR6S)
+
 ## Getting Started
 
 1. **Clone this repository**:
@@ -46,6 +55,10 @@ The sketch as of now focuses mainly on association training (Still trains other 
 2. **Upload the sketch** to your ESP32 device using the Arduino IDE.
 
 3. **Run your Pwnagotchi** Run the pwnagotchi in AI mode alongside the ESP32 trainer to start improving its skills!
+
+## Using Training_Block plugin
+
+The Training_Block plugin is to be uploaded to your pwnagotchi in the respected location of plugins. After uploading the plugin add "main.plugins.Training_Block.enabled = true" to your config.toml file without the quotes though and save it. Reupload your config.toml and reboot the pwnagotchi.
 
 ## License
 
