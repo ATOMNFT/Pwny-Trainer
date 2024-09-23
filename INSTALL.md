@@ -50,7 +50,7 @@ Ensure you have the latest Pwnagotchi firmware installed and configured. Follow 
 
 ### 1. Clone the Repository
 To get started, download or clone the Pwnagotchi Trainer sketch from GitHub.
-https://github.com/ATOMNFT/Pwny-Trainer
+**Download: https://github.com/ATOMNFT/Pwny-Trainer/archive/refs/heads/main.zip**
 
 2. Open the Sketch in Arduino IDE
 Launch Arduino IDE.
