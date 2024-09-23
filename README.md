@@ -52,7 +52,7 @@ Successfully tested on these devices:
     ```
  --  **Or you can download the sketch above.**
 
-2. **Upload the sketch** to your ESP32 device using the Arduino IDE. **(<a href=https://github.com/ATOMNFT/Pwny-Trainer/Install.md>Install Guide</a>)**
+2. **Upload the sketch** to your ESP32 device using the Arduino IDE. **(<a href=https://github.com/ATOMNFT/Pwny-Trainer/INSTALL.md>Install Guide</a>)**
 
 3. **Run the pwnagotchi** in AI mode alongside the ESP32 trainer to start improving its skills!
 
