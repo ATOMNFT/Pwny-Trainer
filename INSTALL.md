@@ -65,6 +65,8 @@ Set the correct port by going to Tools > Port and selecting the port your ESP32 
 Ensure the following libraries are installed in the Arduino IDE:
 
 WiFi.h (for Wi-Fi functionality)
+esp_wifi.h (for extended Wi-Fi functionality)
+ArduinoJson.h (Used to parse, serialize, and manipulate JSON data)
 TFT_eSPI (if your ESP32 has a display)
 Go to Sketch > Include Library > Manage Libraries and search for any missing dependencies.
 
