@@ -36,7 +36,7 @@ In Arduino IDE:
 https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
 
 3. Go to **Tools > Board > Board Manager** and search for "ESP32."
-4. Install the `esp32` package by Espressif Systems.
+4. Install the `esp32 2.0.10` package by Espressif Systems.
 
 ### TFT_eSPI Library (For devices with displays)
 1. Go to **Sketch > Include Library > Manage Libraries**.
