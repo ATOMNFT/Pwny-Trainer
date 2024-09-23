@@ -1,6 +1,7 @@
 <div align="center">
 
 # Pwnagotchi Trainer with ESP32 (WIP)
+### Please keep in mind this is still a work in progress. Bugs and functionality flaws are sure to be found.
 
 ## 📷 Images coming soon! 📷
 

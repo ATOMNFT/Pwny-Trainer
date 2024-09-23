@@ -1,4 +1,5 @@
 # Pwnagotchi Trainer with ESP32: Installation and Setup Guide
+Please keep in mind this is still a work in progress. Bugs and functionality flaws are sure to be found.
 
 This guide walks you through the steps to install the Pwnagotchi Trainer Arduino sketch on an ESP32, enabling your Pwnagotchi to improve its ability to detect, deauthenticate, and capture handshakes from Wi-Fi networks.
 
@@ -110,4 +111,5 @@ Improved Penetration Testing: Random SSID generation forces the Pwnagotchi to dy
 Conclusion
 Your ESP32 is now set up as a Pwnagotchi Trainer! It will continuously broadcast beacons, hop between networks and channels, and interact with any Pwnagotchis in range. By following the instructions in this guide, you’ll ensure that your Pwnagotchi gets the best possible training environment.
 
+Please keep in mind this is still a work in progress. Bugs and functionality flaws are sure to be found.
 Enjoy enhancing your Pwnagotchi’s AI capabilities and penetration testing skills!
