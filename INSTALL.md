@@ -50,10 +50,6 @@ Ensure you have the latest Pwnagotchi firmware installed and configured. Follow 
 ### 1. Clone the Repository
 To get started, download or clone the Pwnagotchi Trainer sketch from GitHub:
 
-```bash
-git clone https://github.com/ATOMNFT/Pwny-Trainer
-Alternatively, you can download the ZIP file from GitHub and extract it.
-
 2. Open the Sketch in Arduino IDE
 Launch Arduino IDE.
 Open the downloaded sketch by going to File > Open and selecting the Pwny-Trainer.ino file.
@@ -75,6 +71,12 @@ Verify the code by clicking the checkmark icon in the top left of Arduino IDE.
 Once verified, click the right arrow icon to upload the sketch to your ESP32.
 6. Monitor the Serial Output
 Once uploaded, open the Serial Monitor (Tools > Serial Monitor) to monitor the ESP32's operation. You should see the ESP32 broadcasting SSIDs, hopping channels, and interacting with any nearby Pwnagotchis.
+
+## Starting Pwnagotchi & Trainer
+It is best to start your pwnagotchi & Pwny-Trainer around the same time.
+This will insure that the beacon frames being sent by the pwnagotchi as 
+soon as AI mode is started will be sniffed by the trainer and vice versa.
+
 
 Running the Sketch
 After flashing the sketch, your ESP32 will begin:
