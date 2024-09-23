@@ -46,7 +46,7 @@ Successfully tested on these devices:
 
 ## Getting Started
 
-<a href=https://github.com/ATOMNFT/Pwny-Trainer/INSTALL.md>Install Guide</a>
+**<a href=https://github.com/ATOMNFT/Pwny-Trainer/blob/main/INSTALL.md>Install Guide</a>**
 
 ## Using Training_Block plugin
 
