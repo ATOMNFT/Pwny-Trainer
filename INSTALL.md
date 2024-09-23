@@ -59,7 +59,7 @@ Launch Arduino IDE.
 Open the downloaded sketch by going to File > Open and selecting the Pwny-Trainer.ino file.
 3. Set Up Your ESP32 Board in Arduino IDE
 Connect your ESP32 device to your computer via USB.
-In Arduino IDE, go to Tools > Board > ESP32 Arduino and select the correct ESP32 board (e.g., TTGO T-Display or ESP32 Dev Module).
+In Arduino IDE, go to Tools > Board > and select LOLIN D32 (This choice works for CYD, TTGO T-Display or ESP32 Dev Module).
 Set the correct port by going to Tools > Port and selecting the port your ESP32 is connected to.
 4. Install Required Libraries
 Ensure the following libraries are installed in the Arduino IDE:
