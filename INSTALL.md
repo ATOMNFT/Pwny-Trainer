@@ -89,7 +89,7 @@ Sending beacon frames every 5 seconds with random MAC addresses for the Pwnagotc
 Detecting Pwnagotchis by capturing beacon frames and displaying their names on the screen.
 The Pwnagotchi should automatically start detecting the SSIDs and beacon frames and interacting with them, helping it improve its skills in capturing handshakes.
 
-Using the Training_Block Plugin
+## Using the Training_Block Plugin (WIP)
 The Training_Block plugin prevents the Pwnagotchi from uploading pcap files containing "PT_" in the filename, reducing unnecessary uploads to WPA-sec.
 
 Upload the Plugin

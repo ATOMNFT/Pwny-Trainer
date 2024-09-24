@@ -49,7 +49,7 @@ Successfully tested on these devices:
 
 **<a href=https://github.com/ATOMNFT/Pwny-Trainer/blob/main/INSTALL.md>Install Guide</a>**
 
-## Using Training_Block plugin
+## Using Training_Block plugin (WIP)
 
 The Training_Block plugin is to be uploaded to your pwnagotchi in the respected location of plugins. After uploading the plugin add "main.plugins.Training_Block.enabled = true" to your config.toml file without the quotes though and save it. Reupload your config.toml and reboot the pwnagotchi.
 
