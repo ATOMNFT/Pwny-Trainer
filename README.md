@@ -8,10 +8,7 @@
 </div>
 
 
-<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/A.jpg">
-<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/A1.jpg">
-<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/B.jpg">
-<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/B1.jpg">
+<img src="https://github.com/user-attachments/assets/40c0a32c-b6ac-49c9-9472-06f19644f243" width="45%"></img> <img src="https://github.com/user-attachments/assets/a441bacf-96df-4b67-9f63-31fc28c355af" width="45%"></img> <img src="https://github.com/user-attachments/assets/d61ad974-b95b-4730-8f37-cb52d721d45c" width="45%"></img> <img src="https://github.com/user-attachments/assets/d3513db4-c66a-4e93-94c2-24d2376b9f30" width="45%"></img> 
 
 This Arduino sketch transforms an ESP32 into a Pwnagotchi trainer, helping Pwnagotchis improve their ability to detect, deauthenticate, and capture handshakes from Wi-Fi networks in a dynamic, ever-changing environment. 
 <br>
