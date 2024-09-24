@@ -7,6 +7,13 @@
 
 </div>
 
+<p align="center">
+<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/1.jpg">
+<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/1a.jpg">
+<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/2.jpg">
+<img src="https://github.com/ATOMNFT/Pwny-Trainer/blob/main/Images/2a.jpg">
+</p>
+
 This Arduino sketch transforms an ESP32 into a Pwnagotchi trainer, helping Pwnagotchis improve their ability to detect, deauthenticate, and capture handshakes from Wi-Fi networks in a dynamic, ever-changing environment. 
 <br>
 The sketch as of now focuses mainly on association training (Still trains other areas, but minimally) but I'm working on deauth training and a few other features.
