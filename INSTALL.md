@@ -45,6 +45,8 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 
 ### For User living outside of North America
 If you live outside of North America, you may need to want to adjust the Wi-Fi channels in the sketch to match your region's regulatory domain. The sketch uses as default the North American channels 1-11. You can change this by modifying the `allowExtraChannels` const from `false` to `true` in the sketch. This will allow the ESP32 to use channels 1-13.
+See [here](https://en.wikipedia.org/wiki/List_of_WLAN_channels#2.4_GHz_(802.11b/g/n/ax/be)) for a list of Wi-Fi channels by region.
+
 
 ### Pwnagotchi Firmware
 Ensure you have the latest Pwnagotchi firmware installed and configured. Follow the instructions [here](https://pwnagotchi.ai).
