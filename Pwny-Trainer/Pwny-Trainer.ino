@@ -28,6 +28,10 @@
 #include <ArduinoJson.h>
 #include <TFT_eSPI.h>
 
+// Boolean to allow/disallow channels 12 and 13
+const bool allowExtraChannels = true;                // Set to true to enable channels 12 and 13
+const int maxChannel = allowExtraChannels ? 13 : 11; // Maximum channel number
+
 // Wi-Fi configuration
 unsigned long previousMillis = 0;
 const long networkInterval = 60 * 1000; // Changes network every 60 seconds
@@ -116,7 +120,7 @@ void loop() {
 
 void changeChannel() {
   // Set a new random channel
-  currentChannel = random(1, 12); // Generate a random Wi-Fi channel between 1 and 11
+  currentChannel = random(1, maxChannel + 1); // Generate a random Wi-Fi channel between 1 and 11
   WiFi.softAPConfig(WiFi.softAPIP(), WiFi.softAPIP(), currentChannel); // Apply the new channel
   Serial.println("Changed channel to: " + String(currentChannel));
   displayNetworkInfo(currentSSID, currentChannel, pwnagotchiName);
@@ -126,7 +130,7 @@ void createRandomNetwork() {
   // Creates new random SSID
   currentSSID = "PT_" + generateRandomSSID(8); // Add prefix and generate a random SSID with a length of 8
   String randomPassword = generateRandomPassword(8); // Generate a random password with a length of 8
-  currentChannel = random(1, 12); // Generate a random Wi-Fi channel between 1 and 11
+  currentChannel = random(1, maxChannel + 1); // Generate a random Wi-Fi channel between 1 and 11
   WiFi.softAP(currentSSID.c_str(), randomPassword.c_str(), currentChannel); // Create the network on the random channel
   Serial.println("Created network: " + currentSSID + " with password: " + randomPassword + " on channel: " + String(currentChannel));
   displayNetworkInfo(currentSSID, currentChannel, pwnagotchiName);

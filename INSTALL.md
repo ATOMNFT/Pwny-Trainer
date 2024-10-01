@@ -43,6 +43,9 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 1. Go to **Sketch > Include Library > Manage Libraries**.
 2. Search for `TFT_eSPI by Bodmer` and install it.
 
+### For User living outside of North America
+If you live outside of North America, you may need to want to adjust the Wi-Fi channels in the sketch to match your region's regulatory domain. The sketch uses as default the North American channels 1-11. You can change this by modifying the `allowExtraChannels` const from `false` to `true` in the sketch. This will allow the ESP32 to use channels 1-13.
+
 ### Pwnagotchi Firmware
 Ensure you have the latest Pwnagotchi firmware installed and configured. Follow the instructions [here](https://pwnagotchi.ai).
 
