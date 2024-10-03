@@ -232,6 +232,9 @@ void getMAC(char* addr, const uint8_t* payload, int pos) {
            payload[pos + 3], payload[pos + 4], payload[pos + 5]);
 }
 
+int invalidJsonCount = 0; // Counter for invalid JSON messages
+const int maxInvalidJsonMessages = 5; // Limit for invalid JSON messages
+
 // Callback function for promiscuous mode
 void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
   wifi_promiscuous_pkt_t *snifferPacket = (wifi_promiscuous_pkt_t*)buf;
@@ -240,6 +243,7 @@ void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
   if (type == WIFI_PKT_MGMT) {
     len -= 4; // Adjust length if necessary
     if (snifferPacket->payload[0] == 0x80) { // Beacon frame
+
       String jsonPayload = "";
       for (int i = 0; i < len; i++) {
         if (isPrintable(snifferPacket->payload[i + 38])) {
@@ -247,27 +251,31 @@ void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
         }
       }
 
-      //Serial.println("JSON Payload: " + jsonPayload); // Print raw JSON payload for debugging
+      // Check if jsonPayload starts with '{' and ends with '}'
+      if (jsonPayload.startsWith("{") && jsonPayload.endsWith("}")) {
+        Serial.println("JSON Payload: " + jsonPayload); // For debugging
 
-      DynamicJsonDocument doc(2048); // Increased buffer size
-      DeserializationError error = deserializeJson(doc, jsonPayload);
-      if (!error) {
-        String name = doc["name"].as<String>();
+        // Parse JSON data
+        DynamicJsonDocument doc(2048); // Buffer size for JSON parsing
+        DeserializationError error = deserializeJson(doc, jsonPayload);
 
-        char srcMac[18];
-        getMAC(srcMac, snifferPacket->payload, 10);
-
-        if (pwnagotchiName != name) {
-          prevPwnagotchiName = pwnagotchiName;
-          pwnagotchiName = name;
+        if (!error) {
+          String name = doc["name"].as<String>();
+          Serial.println("Pwnagotchi Name: " + name);
+          pwnagotchiName = name; // Update Pwnagotchi name
+          invalidJsonCount = 0; // Reset counter when valid JSON is found
+        } else {
+          if (invalidJsonCount < maxInvalidJsonMessages) {
+            Serial.println("Failed to parse JSON: " + String(error.c_str()));
+            invalidJsonCount++; // Increment counter
+          }
         }
-        if (millis() - lastPrintMillis >= printInterval) {
-          //Serial.println("MAC: " + String(srcMac) + " Pwnagotchi Name: " + name);
-          lastPrintMillis = millis();
-        }
-        displayNetworkInfo(currentSSID, currentChannel, pwnagotchiName);
       } else {
-        Serial.println("Failed to parse JSON: " + String(error.c_str()));
+        // Only display "Invalid JSON" message up to 5 times when no pwny/JSON found
+        if (invalidJsonCount < maxInvalidJsonMessages) {
+          Serial.println("Invalid/missing JSON, skipping parsing.");
+          invalidJsonCount++; // Increment counter
+        }
       }
     }
   }
