@@ -212,8 +212,15 @@ void sendBeaconFrame() {
   memcpy(beaconPacket + 6, fakeMac, 6); // Source
   memcpy(beaconPacket + 12, fakeMac, 6); // BSSID
 
-  // Convert MAC address to a string
-  String macAddress = String(fakeMac[0], HEX) + ":" + String(fakeMac[1], HEX) + ":" + String(fakeMac[2], HEX) + ":" + String(fakeMac[3], HEX) + ":" + String(fakeMac[4], HEX) + ":" + String(fakeMac[5], HEX);
+  // Convert MAC address to a string, ensuring each byte is 2 characters (with zero-padding)
+  String macAddress = "";
+  for (int i = 0; i < 6; i++) {
+    if (fakeMac[i] < 0x10) {
+      macAddress += "0";  // Add leading zero if the hex value is less than 0x10
+    }
+    macAddress += String(fakeMac[i], HEX);
+    if (i < 5) macAddress += ":";
+  }
   macAddress.toUpperCase(); // Ensure uppercase for MAC address
   
   // Broadcast the beacon frame on the AP interface
