@@ -44,6 +44,10 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 2. Search for `TFT_eSPI by Bodmer` and install it.
 3. Download the <a href=https://github.com/ATOMNFT/Pwny-Trainer/tree/main/TFT_eSPI>TFT_eSPI</a> lib folder in this repo and drop the folder contents into C:\Users\YOURUSERNAME\Documents\Arduino\libraries\TFT_eSPI folder. Your TFT_eSPI folder might be titled TFT_eSPI-master, that the same folder.
 
+### Setting custom dislay
+In the TFT_eSPI folder is a file titled "User_Setup_Select". Use this file to specify which display you are currently using.
+To use a dislay you must remove the // infront of the entry. Make sure only one line in uncommented. 
+
 ### For User living outside of North America
 If you live outside of North America, you may need to want to adjust the Wi-Fi channels in the sketch to match your region's regulatory domain. The sketch uses as default the North American channels 1-11. You can change this by modifying the `allowExtraChannels` const from `false` to `true` in the sketch. This will allow the ESP32 to use channels 1-13.
 See [here](https://en.wikipedia.org/wiki/List_of_WLAN_channels#2.4_GHz_(802.11b/g/n/ax/be)) for a list of Wi-Fi channels by region.
