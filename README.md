@@ -21,7 +21,7 @@ The sketch as of now focuses mainly on association training (Still trains other 
 
 ## Fixes
 
-**Only display "Invalid JSON" message up to 5 times when no pwny/JSON found**
+**Only display "Invalid JSON" message up to 5 times when no pwny/JSON found**: This helps limit messages in serial monitor.
 ___
 
 ## Features
