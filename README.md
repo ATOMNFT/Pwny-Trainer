@@ -21,11 +21,9 @@ The sketch as of now focuses mainly on association training (Still trains other 
 
 ## Fixes
 
-### "Invalid JSON" message fix: 
-This helps limit messages in serial monitor.
+1 **"Invalid JSON" message fix:** This helps limit messages in serial monitor.
 
-### Send beacon MAC address fix: 
-Ensures the MAC address string is always correctly formatted with two characters per byte.
+2 **Send beacon MAC address fix:** Ensures the MAC address string is always correctly formatted with two characters per byte.
 ___
 
 ## Features
