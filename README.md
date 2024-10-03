@@ -61,6 +61,10 @@ Successfully tested on these devices:
 
 The Training_Block plugin is to be uploaded to your pwnagotchi in the respected location of plugins. After uploading the plugin add "main.plugins.Training_Block.enabled = true" to your config.toml file without the quotes though and save it. Reupload your config.toml and reboot the pwnagotchi.
 
+## Contributors
+
+https://github.com/Roalkege: Added feature to turn on/off channels 12 & 13.
+
 ## License
 
 This project is licensed under the GNU License. See the file for details.
