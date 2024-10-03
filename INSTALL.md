@@ -44,7 +44,7 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 2. Search for `TFT_eSPI by Bodmer` and install it.
 
 ### TFT _eSPI Lib extended
-You can download the TFT_eSPI lib folder in this repo and drop them into C:\Users\YOURUSERNAME\Documents\Arduino\libraries
+You can download the TFT_eSPI lib folder in this repo and drop the folder into C:\Users\YOURUSERNAME\Documents\Arduino\libraries
 
 ### For User living outside of North America
 If you live outside of North America, you may need to want to adjust the Wi-Fi channels in the sketch to match your region's regulatory domain. The sketch uses as default the North American channels 1-11. You can change this by modifying the `allowExtraChannels` const from `false` to `true` in the sketch. This will allow the ESP32 to use channels 1-13.
