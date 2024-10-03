@@ -21,6 +21,8 @@ The sketch as of now focuses mainly on association training (Still trains other 
 
 ## Features
 
+- **Random RSSI**: Set random transmission power between 0 and 82 (max 19.5 dBm) This feature makes sure the Pwnagotchi gets exposure to all tyes of signal strengths.
+
 - **Channel Hopping**: Every 10 seconds, the ESP32 switches to a new Wi-Fi channel. This ensures that the Pwnagotchi gets exposure to networks on various channels, enhancing its training by scanning across a wider range of frequencies.
 
 - **AP/SSID Hopping**: Changes network every 60 seconds. This simulates a constantly changing Wi-Fi environment by dynamically switching between different SSIDs. This keeps the Pwnagotchi actively scanning, analyzing new networks, and attempting to capture handshakes in a variety of conditions.
