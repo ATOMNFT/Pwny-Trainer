@@ -19,6 +19,10 @@ This Arduino sketch transforms an ESP32 into a Pwnagotchi trainer, helping Pwnag
 <br>
 The sketch as of now focuses mainly on association training (Still trains other areas, but minimally) but I'm working on deauth training and a few other features.
 
+## Fixes
+
+...
+
 ## Features
 
 - **Random RSSI**: Set random transmission power between 0 and 82 (max 19.5 dBm) This feature makes sure the Pwnagotchi gets exposure to all tyes of signal strengths.
