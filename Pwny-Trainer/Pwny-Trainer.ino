@@ -123,7 +123,7 @@ void changeChannel() {
   currentChannel = random(1, maxChannel + 1); // Generate a random Wi-Fi channel between 1 and 11
   WiFi.softAPConfig(WiFi.softAPIP(), WiFi.softAPIP(), currentChannel); // Apply the new channel
   Serial.println("Changed channel to: " + String(currentChannel));
-  displayNetworkInfo(currentSSID, currentChannel, pwnagotchiName);
+  displayPwnagotchiInfo(currentSSID, currentChannel, pwnagotchiName, 0);
 }
 
 void createRandomNetwork() {
@@ -136,7 +136,7 @@ void createRandomNetwork() {
   currentChannel = random(1, maxChannel + 1); // Generate a random Wi-Fi channel between 1 and 11
   WiFi.softAP(currentSSID.c_str(), randomPassword.c_str(), currentChannel); // Create the network on the random channel
   Serial.println("Created network: " + currentSSID + " with password: " + randomPassword + " on channel: " + String(currentChannel));
-  displayNetworkInfo(currentSSID, currentChannel, pwnagotchiName);
+  displayPwnagotchiInfo(currentSSID, currentChannel, pwnagotchiName, 0);
 }
 
 void setRandomWiFiPower() {
@@ -243,6 +243,9 @@ int invalidJsonCount = 0; // Counter for invalid JSON messages
 const int maxInvalidJsonMessages = 5; // Limit for invalid JSON messages
 
 // Callback function for promiscuous mode
+void displayPwnagotchiInfo(String pwnagotchiName, int totalPwnd);
+
+// pwnSnifferCallback function
 void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
   wifi_promiscuous_pkt_t *snifferPacket = (wifi_promiscuous_pkt_t*)buf;
   int len = snifferPacket->rx_ctrl.sig_len;
@@ -267,10 +270,18 @@ void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
         DeserializationError error = deserializeJson(doc, jsonPayload);
 
         if (!error) {
-          String name = doc["name"].as<String>();
+          String name = doc["name"].as<String>();         // Extract Pwnagotchi name
+          int totalPwnd = doc["total_pwnd"].as<int>();    // Extract total pwnd count
+          
           Serial.println("Pwnagotchi Name: " + name);
+          Serial.println("Total Pwnd: " + String(totalPwnd));
+          
           pwnagotchiName = name; // Update Pwnagotchi name
-          invalidJsonCount = 0; // Reset counter when valid JSON is found
+          invalidJsonCount = 0;  // Reset counter when valid JSON is found
+
+          // Display the Pwnagotchi name and total pwnd on the screen
+          displayPwnagotchiInfo(currentSSID, currentChannel, pwnagotchiName, 0);
+          
         } else {
           if (invalidJsonCount < maxInvalidJsonMessages) {
             Serial.println("Failed to parse JSON: " + String(error.c_str()));
@@ -288,7 +299,8 @@ void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
   }
 }
 
-void displayNetworkInfo(String ssid, int channel, String pwnagotchiName) {
+
+void displayPwnagotchiInfo(String ssid, int channel, String pwnagotchiName, int totalPwnd) {
   tft.fillScreen(TFT_BLACK);  // Clear the screen
 
   // Set font and text color
@@ -323,6 +335,11 @@ void displayNetworkInfo(String ssid, int channel, String pwnagotchiName) {
   tft.print("Pwnagotchi: ");
   tft.setTextColor(TFT_YELLOW, TFT_BLACK);
   tft.print(pwnagotchiName);
+
+  // Display the total pwnd count
+  tft.setCursor(10, 80);  
+  tft.setTextColor(TFT_WHITE, TFT_BLACK);
+  tft.print("Total Pwnd: " + String(totalPwnd));
 
   // Optional: Display previous Pwnagotchi name (if needed)
   if (prevPwnagotchiName != "") {
