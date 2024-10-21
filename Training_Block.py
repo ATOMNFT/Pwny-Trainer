@@ -13,20 +13,23 @@ class TrainingBlock(plugins.Plugin):
         self.plugin_name = "TrainingBlock"
         # Get the handshake directory from the Pwnagotchi configuration, fallback to /root/handshakes if not set
         self.handshake_dir = self.config.get("main.handshakes", "/root/handshakes")
-        self.pt_handshake_dir = '/root/PT_handshakes'
+        self.pt_handshake_dir = self.config.get("main.pt_handshakes", "/root/PT_handshakes")
         logging.info(f"{self.plugin_name} plugin loaded successfully!")
 
         # Ensure the target directory exists
         if not os.path.exists(self.pt_handshake_dir):
-            os.makedirs(self.pt_handshake_dir)
-            logging.info(f"Created directory: {self.pt_handshake_dir}")
+            try:
+                os.makedirs(self.pt_handshake_dir)
+                logging.info(f"Created directory: {self.pt_handshake_dir}")
+            except OSError as e:
+                logging.error(f"Failed to create directory '{self.pt_handshake_dir}': {str(e)}")
 
     # Hook into on_handshake event to check handshake files before uploading
     def on_handshake(self, agent, filename, bssid, station):
         try:
             # Check if the filename contains 'PT_'
-            if self._contains_blocked_ssid_in_filename(filename):
-                logging.info(f"PCAP file '{filename}' contains 'PT_'. Moving file to {self.pt_handshake_dir} and skipping upload.")
+            if 'PT_' in filename:
+                logging.info(f"PCAP file '{filename}' (BSSID: {bssid}, Station: {station}) contains 'PT_'. Moving file to {self.pt_handshake_dir} and skipping upload.")
 
                 # Move the file to the PT_handshakes directory
                 self._move_file(filename)
@@ -35,14 +38,12 @@ class TrainingBlock(plugins.Plugin):
 
             # Otherwise, allow the file to be uploaded
             return filename
-        except Exception as e:
-            logging.error(f"Error processing handshake file '{filename}': {str(e)}")
+        except FileNotFoundError as e:
+            logging.error(f"File '{filename}' not found: {str(e)}")
             return filename
-
-    # Helper function to check if the filename contains 'PT_'
-    def _contains_blocked_ssid_in_filename(self, filename):
-        # Check if 'PT_' is part of the filename
-        return 'PT_' in filename
+        except OSError as e:
+            logging.error(f"OS error while processing '{filename}': {str(e)}")
+            return filename
 
     # Helper function to move the file to the PT_handshakes directory
     def _move_file(self, filename):
@@ -56,5 +57,5 @@ class TrainingBlock(plugins.Plugin):
                 logging.info(f"Moved file '{filename}' to '{self.pt_handshake_dir}'.")
             else:
                 logging.warning(f"File '{filename}' not found in '{self.handshake_dir}'.")
-        except Exception as e:
+        except OSError as e:
             logging.error(f"Failed to move file '{filename}': {str(e)}")
