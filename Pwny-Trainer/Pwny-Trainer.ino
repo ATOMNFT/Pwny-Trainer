@@ -7,7 +7,7 @@
 
 /* 
  * FLASH SETTINGS
- * Board: LOLIN D32
+ * Board settings: LOLIN D32
  * Flash Frequency: 80MHz
  * Partition Scheme: Minimal SPIFFS.
 */
