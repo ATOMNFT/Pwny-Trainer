@@ -313,7 +313,7 @@ void displayPwnagotchiInfo(String ssid, int channel, String pwnagotchiName, int 
 
   // Display title: "Pwny-Trainer"
   tft.setCursor(10, 10);
-  tft.print("Pwny-Trainer");
+  tft.print("Pwny Trainer");
 
   // Draw a horizontal green line below the title
   tft.drawLine(10, 35, tft.width() - 10, 35, TFT_GREEN);
