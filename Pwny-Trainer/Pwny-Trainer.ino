@@ -47,7 +47,7 @@ const long channelChangeInterval = 10 * 1000; // Change channel every 10 seconds
 String currentSSID = "";
 int currentChannel = 1;
 String pwnagotchiName = "";
-String prevPwnagotchiName = ""; // To store the previous Pwnagotchi name
+// String prevPwnagotchiName = ""; // To store the previous Pwnagotchi name
 
 // Broadcast MAC address in beacon frames
 uint8_t broadcastMac[6]; // This will store the ESP32's MAC address
@@ -240,10 +240,7 @@ void getMAC(char* addr, const uint8_t* payload, int pos) {
 }
 
 int invalidJsonCount = 0; // Counter for invalid JSON messages
-const int maxInvalidJsonMessages = 5; // Limit for invalid JSON messages
-
-// Callback function for promiscuous mode
-void displayPwnagotchiInfo(String pwnagotchiName, int totalPwnd);
+const int maxInvalidJsonMessages = 20; // Limit for invalid JSON messages
 
 // pwnSnifferCallback function
 void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
@@ -255,32 +252,39 @@ void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
     if (snifferPacket->payload[0] == 0x80) { // Beacon frame
 
       String jsonPayload = "";
-      for (int i = 0; i < len; i++) {
-        if (isPrintable(snifferPacket->payload[i + 38])) {
-          jsonPayload += (char)snifferPacket->payload[i + 38];
+      int jsonStartIndex = 38; // Modify based on frame analysis
+
+      // Extract potential JSON payload
+      for (int i = jsonStartIndex; i < len; i++) {
+        if (isPrintable(snifferPacket->payload[i])) {
+          jsonPayload += (char)snifferPacket->payload[i];
         }
       }
 
-      // Check if jsonPayload starts with '{' and ends with '}'
+      // Debugging: Print the extracted payload
+      Serial.println("Extracted Payload:");
+      Serial.println(jsonPayload);
+
+      // Check if JSON structure is valid
       if (jsonPayload.startsWith("{") && jsonPayload.endsWith("}")) {
-        Serial.println("JSON Payload: " + jsonPayload); // For debugging
+        Serial.println("JSON Payload: " + jsonPayload);
 
         // Parse JSON data
-        DynamicJsonDocument doc(2048); // Buffer size for JSON parsing
+        DynamicJsonDocument doc(2048); // Increase buffer size if necessary
         DeserializationError error = deserializeJson(doc, jsonPayload);
 
         if (!error) {
           String name = doc["name"].as<String>();         // Extract Pwnagotchi name
-          int totalPwnd = doc["total_pwnd"].as<int>();    // Extract total pwnd count
-          
+          int totalPwnd = doc["pwnd_tot"].as<int>();    // Extract total pwnd count
+
           Serial.println("Pwnagotchi Name: " + name);
           Serial.println("Total Pwnd: " + String(totalPwnd));
-          
+
           pwnagotchiName = name; // Update Pwnagotchi name
           invalidJsonCount = 0;  // Reset counter when valid JSON is found
 
           // Display the Pwnagotchi name and total pwnd on the screen
-          displayPwnagotchiInfo(currentSSID, currentChannel, pwnagotchiName, 0);
+          displayPwnagotchiInfo(currentSSID, currentChannel, pwnagotchiName, totalPwnd);
           
         } else {
           if (invalidJsonCount < maxInvalidJsonMessages) {
@@ -289,7 +293,7 @@ void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
           }
         }
       } else {
-        // Only display "Invalid JSON" message up to 5 times when no pwny/JSON found
+        // Only display "Invalid JSON" message up to 20 times
         if (invalidJsonCount < maxInvalidJsonMessages) {
           Serial.println("Invalid/missing JSON, skipping parsing.");
           invalidJsonCount++; // Increment counter
@@ -337,16 +341,8 @@ void displayPwnagotchiInfo(String ssid, int channel, String pwnagotchiName, int 
   tft.print(pwnagotchiName);
 
   // Display the total pwnd count
-  tft.setCursor(10, 80);  
+  tft.setCursor(10, 110);  
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.print("Total Pwnd: " + String(totalPwnd));
 
-  // Optional: Display previous Pwnagotchi name (if needed)
-  if (prevPwnagotchiName != "") {
-    tft.setCursor(10, 110);
-    tft.setTextColor(TFT_WHITE, TFT_BLACK);
-    tft.print("Prev Pwny: ");
-    tft.setTextColor(TFT_YELLOW, TFT_BLACK);
-    tft.print(prevPwnagotchiName);
-  }
 }
