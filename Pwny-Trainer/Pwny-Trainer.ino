@@ -242,6 +242,9 @@ void getMAC(char* addr, const uint8_t* payload, int pos) {
 int invalidJsonCount = 0; // Counter for invalid JSON messages
 const int maxInvalidJsonMessages = 20; // Limit for invalid JSON messages
 
+// // Callback function for promiscuous mode
+// void displayPwnagotchiInfo(String pwnagotchiName, int totalPwnd);
+
 // pwnSnifferCallback function
 void pwnSnifferCallback(void* buf, wifi_promiscuous_pkt_type_t type) {
   wifi_promiscuous_pkt_t *snifferPacket = (wifi_promiscuous_pkt_t*)buf;
@@ -345,4 +348,12 @@ void displayPwnagotchiInfo(String ssid, int channel, String pwnagotchiName, int 
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.print("Total Pwnd: " + String(totalPwnd));
 
+  // // Optional: Display previous Pwnagotchi name (if needed)
+  // if (prevPwnagotchiName != "") {
+  //   tft.setCursor(10, 110);
+  //   tft.setTextColor(TFT_WHITE, TFT_BLACK);
+  //   tft.print("Prev Pwny: ");
+  //   tft.setTextColor(TFT_YELLOW, TFT_BLACK);
+  //   tft.print(prevPwnagotchiName);
+  // }
 }
