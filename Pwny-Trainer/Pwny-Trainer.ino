@@ -47,7 +47,7 @@ const long channelChangeInterval = 10 * 1000; // Change channel every 10 seconds
 String currentSSID = "";
 int currentChannel = 1;
 String pwnagotchiName = "";
-// String prevPwnagotchiName = ""; // To store the previous Pwnagotchi name
+
 
 // Broadcast MAC address in beacon frames
 uint8_t broadcastMac[6]; // This will store the ESP32's MAC address
