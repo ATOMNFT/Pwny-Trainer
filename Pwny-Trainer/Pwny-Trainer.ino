@@ -48,7 +48,6 @@ String currentSSID = "";
 int currentChannel = 1;
 String pwnagotchiName = "";
 
-
 // Broadcast MAC address in beacon frames
 uint8_t broadcastMac[6]; // This will store the ESP32's MAC address
 
